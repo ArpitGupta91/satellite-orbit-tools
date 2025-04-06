@@ -118,12 +118,7 @@ or
 ## 🌐 Run Web Dashboard (will be publishing as soon!!!)
 
 ```bash
-# Navigate to React project (if using Vite/Next.js etc.)
-cd web-dashboard
 
-# Install and start dev server
-npm install
-npm run dev
 ```
 
 ---
