@@ -105,6 +105,12 @@ python multi_conjunction_checker.py
 
     ✅ All clear. No close approaches detected.
 
+
+or
+  
+  
+  ✅ Conjunction analysis complete. Output saved to conjunction-warning.csv
+
 ```
 
 ---
