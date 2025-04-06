@@ -11,7 +11,7 @@ def main():
     ts = load.timescale()
     now = datetime.now(utc)
 
-    # Collect positions ( like every 5 minutes for 3 hours)
+    # Collect satellite positions
     lats, lons = [], []
     for minutes in range(0, 180, 5):
         t = ts.utc(now.year, now.month, now.day, now.hour, now.minute + minutes)
@@ -20,10 +20,13 @@ def main():
         lats.append(subpoint.latitude.degrees)
         lons.append(subpoint.longitude.degrees)
 
-    # 3D Earth map
+    # Ground station location [NASA Kennedy Space Center Ground Station (KSC)]
+    ground_lat = 28.572
+    ground_lon = -80.648
+
     fig = go.Figure()
 
-    # Satellite track (red line)
+    # Satellite track
     fig.add_trace(go.Scattergeo(
         lat=lats,
         lon=lons,
@@ -33,7 +36,18 @@ def main():
         name='Uydu Yolu'
     ))
 
-    # Earth map settings
+    # Ground Station marker
+    fig.add_trace(go.Scattergeo(
+        lat=[ground_lat],
+        lon=[ground_lon],
+        mode='markers+text',
+        marker=dict(size=10, color='green'),
+        text=["Base Station"],
+        textposition="top center",
+        name="Base Station"
+    ))
+
+    # Earth map config
     fig.update_geos(
         projection_type="orthographic",
         showland=True, landcolor="rgb(243, 243, 243)",
@@ -42,12 +56,12 @@ def main():
     )
 
     fig.update_layout(
-        title="3D Dünya Üzerinde Uydu Takibi",
+        title="3D Satellite Tracking on Earth",
         margin=dict(l=0, r=0, t=30, b=0)
     )
 
     fig.write_html("satellite_track_3d.html")
-    print("✅ created 3D map: satellite_track_3d.html")
+    print("✅ created 3D map with ground station: satellite_track_3d.html")
 
 if __name__ == "__main__":
     main()
