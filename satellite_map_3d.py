@@ -33,7 +33,7 @@ def main():
         mode='lines+markers',
         line=dict(width=2, color='red'),
         marker=dict(size=4, color='blue'),
-        name='Uydu Yolu'
+        name='Satellite Path'
     ))
 
     # Ground Station marker
